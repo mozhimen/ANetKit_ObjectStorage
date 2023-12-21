@@ -35,9 +35,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
 
-    implementation 'com.qcloud.cos:cos-android-lite-nobeacon:5.9.+'
+    api 'com.qcloud.cos:cos-android-nobeacon:5.9.+'
 
-    implementation project(project.path.replace(project.name, '') +':netk_os')
+    api project(project.path.replace(project.name, '') +':netk_os')
     implementation project(':SwiftKit:basick')
 
     testImplementation 'junit:junit:4.13.2'
