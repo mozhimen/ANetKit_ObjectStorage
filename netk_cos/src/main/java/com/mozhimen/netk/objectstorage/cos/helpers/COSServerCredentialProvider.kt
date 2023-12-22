@@ -1,5 +1,6 @@
-package com.mozhimen.netk.objectstorage.cos
+package com.mozhimen.netk.objectstorage.cos.helpers
 
+import com.mozhimen.netk.objectstorage.cos.commons.IFetchCredentialsListener
 import com.tencent.qcloud.core.auth.BasicLifecycleCredentialProvider
 import com.tencent.qcloud.core.auth.QCloudLifecycleCredentials
 import com.tencent.qcloud.core.common.QCloudClientException

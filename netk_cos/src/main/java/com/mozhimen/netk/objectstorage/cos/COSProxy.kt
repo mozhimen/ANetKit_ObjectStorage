@@ -1,15 +1,13 @@
 package com.mozhimen.netk.objectstorage.cos
 
-import android.content.Context
 import com.mozhimen.basick.utilk.bases.BaseUtilK
 import com.mozhimen.basick.utilk.java.util.UtilKDate
 import com.mozhimen.basick.utilk.java.util.date2longDate
+import com.mozhimen.netk.objectstorage.cos.commons.IFetchCredentialsListener
+import com.mozhimen.netk.objectstorage.cos.helpers.COSServerCredentialProvider
 import com.mozhimen.netk.objectstorage.os.commons.IOSProxy
 import com.tencent.cos.xml.CosXmlService
 import com.tencent.cos.xml.CosXmlServiceConfig
-import com.tencent.cos.xml.exception.CosXmlClientException
-import com.tencent.cos.xml.model.PresignedUrlRequest
-import com.tencent.qcloud.core.http.RequestBodySerializer
 import java.text.SimpleDateFormat
 import java.util.TimeZone
 

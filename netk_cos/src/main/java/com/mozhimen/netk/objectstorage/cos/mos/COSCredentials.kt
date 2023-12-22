@@ -1,4 +1,4 @@
-package com.mozhimen.netk.objectstorage.cos
+package com.mozhimen.netk.objectstorage.cos.mos
 
 import com.tencent.qcloud.core.auth.QCloudLifecycleCredentials
 import com.tencent.qcloud.core.auth.SessionQCloudCredentials

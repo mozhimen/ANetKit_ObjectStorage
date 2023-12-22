@@ -1,4 +1,4 @@
-package com.mozhimen.netk.objectstorage.cos
+package com.mozhimen.netk.objectstorage.cos.utils
 
 import com.tencent.cos.xml.CosXmlService
 import com.tencent.cos.xml.exception.CosXmlClientException

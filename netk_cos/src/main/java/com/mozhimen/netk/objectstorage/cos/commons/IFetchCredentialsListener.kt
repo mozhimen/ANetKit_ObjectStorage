@@ -1,4 +1,6 @@
-package com.mozhimen.netk.objectstorage.cos
+package com.mozhimen.netk.objectstorage.cos.commons
+
+import com.mozhimen.netk.objectstorage.cos.mos.COSCredentials
 
 /**
  * @ClassName IFetchCredentialsListener
