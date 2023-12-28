@@ -12,8 +12,8 @@ import com.tencent.qcloud.core.http.RequestBodySerializer
  * @Date 2023/12/22 0:03
  * @Version 1.0
  */
-fun CosXmlService.getPresignDownloadUrl(bucket: String, cosPath: String): String =
-    COSUrlUtil.getPresignDownloadUrl(this, bucket, cosPath)
+fun CosXmlService.getPresignDownloadUrl(bucket: String, cosPath: String, expirationTime: Int): String =
+    COSUrlUtil.getPresignDownloadUrl(this, bucket, cosPath, expirationTime)
 
 fun CosXmlService.getPresignUploadUrl(bucket: String, cosPath: String): String =
     COSUrlUtil.getPresignUploadUrl(this, bucket, cosPath)
@@ -23,7 +23,7 @@ object COSUrlUtil {
      * 获取预签名下载链接
      */
     @JvmStatic
-    fun getPresignDownloadUrl(cosXmlService: CosXmlService, bucket: String, cosPath: String): String {
+    fun getPresignDownloadUrl(cosXmlService: CosXmlService, bucket: String, cosPath: String, expirationTime: Int): String {
         //.cssg-snippet-body-start:[get-presign-download-url]
         try {
 //            val bucket = "examplebucket-1250000000" //存储桶名称
@@ -31,7 +31,7 @@ object COSUrlUtil {
             val method = "GET" //请求 HTTP 方法.
             val presignedUrlRequest = PresignedUrlRequest(bucket, cosPath)
             presignedUrlRequest.setRequestMethod(method)
-            presignedUrlRequest.setSignKeyTime(360)// 设置签名有效期为 60s，注意这里是签名有效期，您需要自行保证密钥有效期
+            presignedUrlRequest.setSignKeyTime(expirationTime)// 设置签名有效期为 60s，注意这里是签名有效期，您需要自行保证密钥有效期/*2592000*/一个月
             presignedUrlRequest.addNoSignHeader("Host")// 设置不签名 Host
             return cosXmlService.getPresignedURL(presignedUrlRequest) ?: ""
         } catch (e: CosXmlClientException) {
