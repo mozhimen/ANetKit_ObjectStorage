@@ -1,7 +1,7 @@
 package com.mozhimen.netk.objectstorage.cos
 
 import com.mozhimen.basick.utilk.bases.BaseUtilK
-import com.mozhimen.basick.utilk.java.util.UtilKDate
+import com.mozhimen.basick.utilk.java.text.UtilKSimpleDateFormat
 import com.mozhimen.basick.utilk.java.util.date2longDate
 import com.mozhimen.netk.objectstorage.cos.commons.IFetchCredentialsListener
 import com.mozhimen.netk.objectstorage.cos.helpers.COSServerCredentialProvider
@@ -9,6 +9,7 @@ import com.mozhimen.netk.objectstorage.os.commons.IOSProxy
 import com.tencent.cos.xml.CosXmlService
 import com.tencent.cos.xml.CosXmlServiceConfig
 import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.TimeZone
 
 
@@ -22,7 +23,7 @@ import java.util.TimeZone
 class COSProxy : BaseUtilK(), IOSProxy {
     private var _cosXmlService: CosXmlService? = null
     private val _simpleDateFormat: SimpleDateFormat by lazy {
-        UtilKDate.getSdf1("yyyy-MM-dd'T'HH:mm:ssZ").apply { timeZone = TimeZone.getTimeZone("UTC") }
+        UtilKSimpleDateFormat.get("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault()).apply { timeZone = TimeZone.getTimeZone("UTC") }
     }
 
     //////////////////////////////////////////////////////////////////////////
