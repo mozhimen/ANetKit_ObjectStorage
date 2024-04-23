@@ -1,6 +1,7 @@
 package com.mozhimen.netk.objectstorage.cos.utils
 
 import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.basick.elemk.commons.IAB_Listener
 import com.mozhimen.basick.elemk.commons.IA_Listener
 import com.mozhimen.basick.utilk.bases.BaseUtilK
@@ -52,14 +53,14 @@ object TransferUploadUtil : BaseUtilK() {
         val cosXmlUploadTask = transferManager.upload(bucket, cosPath, strFilePathName, uploadId)// 上传文件
         cosXmlUploadTask.setCosXmlProgressListener { complete, target ->//设置上传进度回调
             // todo Do something to update progress...
-            Log.v(TAG, "transferUploadFileOnBack: setCosXmlProgressListener complete $complete target $target")
+            UtilKLogWrapper.v(TAG, "transferUploadFileOnBack: setCosXmlProgressListener complete $complete target $target")
             onProgress?.invoke(complete, target)
         }
         cosXmlUploadTask.setCosXmlResultListener(object : CosXmlResultListener {
             //设置返回结果回调
             override fun onSuccess(request: CosXmlRequest, result: CosXmlResult) {
                 val uploadTaskResult = result as COSXMLUploadTaskResult
-                Log.d(TAG, "onSuccess: uploadTaskResult $uploadTaskResult")
+                UtilKLogWrapper.d(TAG, "onSuccess: uploadTaskResult $uploadTaskResult")
                 onComplete.invoke(true)
             }
 
@@ -71,13 +72,13 @@ object TransferUploadUtil : BaseUtilK() {
                 serviceException: CosXmlServiceException?
             ) {
                 clientException?.printStackTrace() ?: serviceException?.printStackTrace()
-                Log.w(TAG, "onFail: ")
+                UtilKLogWrapper.w(TAG, "onFail: ")
                 onComplete.invoke(false)
             }
         })
         cosXmlUploadTask.setTransferStateListener {//设置任务状态回调, 可以查看任务过程
             // todo notify transfer state
-            Log.d(TAG, "transferUploadFile: state $it")
+            UtilKLogWrapper.d(TAG, "transferUploadFile: state $it")
         }
     }
 }
