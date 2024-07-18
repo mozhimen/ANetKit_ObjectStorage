@@ -18,11 +18,11 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NetKit_ObjectStorage"
+rootProject.name = "ANetKit_ObjectStorage"
 include ':app'
 include ':netk_oss'
 include ':netk_cos'
-include ':netk_os'
+include ':netk_os_basic'
 //SwiftKit
 include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.netk.cos'
+    namespace 'com.mozhimen.netk.os.basic'
     compileSdk 34
 
     defaultConfig {
@@ -31,9 +31,6 @@ android {
 }
 
 dependencies {
-    api 'com.qcloud.cos:cos-android-nobeacon:5.9.+'
-    api project(project.path.replace(project.name, '') +':netk_os_basic')
-    implementation project(':SwiftKit:basick')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

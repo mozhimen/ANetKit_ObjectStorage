@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.netk.objectstorage.oss'
+    namespace 'com.mozhimen.netk.oss'
     compileSdk 34
 
     defaultConfig {
@@ -31,14 +31,8 @@ android {
 }
 
 dependencies {
-
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-
-    implementation 'com.aliyun.dpa:oss-android-sdk:2.9.13'
-
-    implementation project(':netk_os')
+    api 'com.aliyun.dpa:oss-android-sdk:2.9.13'
+    api project(project.path.replace(project.name, '') + ':netk_os_basic')
     implementation project(':SwiftKit:basick')
 
     testImplementation 'junit:junit:4.13.2'
