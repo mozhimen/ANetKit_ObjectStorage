@@ -4,7 +4,8 @@ import com.mozhimen.basick.utilk.bases.BaseUtilK
 import com.mozhimen.basick.utilk.java.text.UtilKSimpleDateFormat
 import com.mozhimen.basick.utilk.java.util.date2longDate
 import com.mozhimen.netk.cos.commons.IFetchCredentialsListener
-import com.mozhimen.netk.cos.helpers.COSServerCredentialProvider
+import com.mozhimen.netk.cos.impls.COSLifecycleCredentialProvider
+import com.mozhimen.netk.cos.impls.COSStaticCredentialProvider
 import com.mozhimen.netk.os.basic.commons.IOSProxy
 import com.tencent.cos.xml.CosXmlService
 import com.tencent.cos.xml.CosXmlServiceConfig
@@ -26,6 +27,9 @@ class COSProxy : BaseUtilK(), IOSProxy {
         UtilKSimpleDateFormat.get("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault()).apply { timeZone = TimeZone.getTimeZone("UTC") }
     }
 
+    private var _cOSLifecycleCredentialProvider: COSLifecycleCredentialProvider? = null
+    private var _cOSStaticCredentialProvider: COSStaticCredentialProvider? = null
+
     //////////////////////////////////////////////////////////////////////////
 
     override fun strTimeExpiration2longTimeExpiration(strDate: String): Long? =
@@ -34,6 +38,12 @@ class COSProxy : BaseUtilK(), IOSProxy {
         } catch (e: Exception) {
             null
         }
+
+    fun getCOSServerCredentialProvider(): COSLifecycleCredentialProvider? =
+        _cOSLifecycleCredentialProvider
+
+    fun getCOSStaticCredentialProvider(): COSStaticCredentialProvider? =
+        _cOSStaticCredentialProvider
 
     fun getService(): CosXmlService? =
         _cosXmlService
@@ -45,7 +55,25 @@ class COSProxy : BaseUtilK(), IOSProxy {
             .setRegion(region)
             .isHttps(true) // 使用 HTTPS 请求，默认为 HTTP 请求
             .builder()
-        return CosXmlService(_context, serviceConfig, COSServerCredentialProvider(iFetchCredentialsListener)).also { _cosXmlService = it }
+        val cosLifecycleCredentialProvider = COSLifecycleCredentialProvider(iFetchCredentialsListener)
+        return CosXmlService(_context, serviceConfig, cosLifecycleCredentialProvider).also {
+            _cosXmlService = it
+            _cOSLifecycleCredentialProvider = cosLifecycleCredentialProvider
+        }
+    }
+
+    fun initService_ofStatic(region: String): CosXmlService {
+        // 存储桶region可以在COS控制台指定存储桶的概览页查看 https://console.cloud.tencent.com/cos5/bucket/ ，关于地域的详情见 https://cloud.tencent.com/document/product/436/6224
+        //val region = "ap-guangzhou"
+        val serviceConfig = CosXmlServiceConfig.Builder()
+            .setRegion(region)
+            .isHttps(true) // 使用 HTTPS 请求，默认为 HTTP 请求
+            .builder()
+        val cosLifecycleCredentialProvider = COSStaticCredentialProvider()
+        return CosXmlService(_context, serviceConfig, cosLifecycleCredentialProvider).also {
+            _cosXmlService = it
+            _cOSStaticCredentialProvider = cosLifecycleCredentialProvider
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////

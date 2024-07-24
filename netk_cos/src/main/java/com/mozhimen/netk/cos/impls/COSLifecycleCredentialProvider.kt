@@ -1,4 +1,4 @@
-package com.mozhimen.netk.cos.helpers
+package com.mozhimen.netk.cos.impls
 
 import com.mozhimen.netk.cos.commons.IFetchCredentialsListener
 import com.tencent.qcloud.core.auth.BasicLifecycleCredentialProvider
@@ -12,7 +12,7 @@ import com.tencent.qcloud.core.common.QCloudClientException
  * @Date 2023/12/21 23:12
  * @Version 1.0
  */
-class COSServerCredentialProvider(
+class COSLifecycleCredentialProvider(
     private val _fetchCredentialsListener: IFetchCredentialsListener
 ) : BasicLifecycleCredentialProvider() {
     @Throws(QCloudClientException::class)
