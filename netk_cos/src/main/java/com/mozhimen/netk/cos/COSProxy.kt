@@ -2,7 +2,7 @@ package com.mozhimen.netk.cos
 
 import com.mozhimen.basick.utilk.bases.BaseUtilK
 import com.mozhimen.basick.utilk.java.text.UtilKSimpleDateFormat
-import com.mozhimen.basick.utilk.java.util.date2longDate
+import com.mozhimen.basick.utilk.java.text.date2longDate
 import com.mozhimen.netk.cos.commons.IFetchCredentialsListener
 import com.mozhimen.netk.cos.impls.COSLifecycleCredentialProvider
 import com.mozhimen.netk.cos.impls.COSStaticCredentialProvider
