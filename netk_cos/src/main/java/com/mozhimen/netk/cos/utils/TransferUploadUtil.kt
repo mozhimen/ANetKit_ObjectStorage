@@ -1,9 +1,9 @@
 package com.mozhimen.netk.cos.utils
 
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.elemk.commons.IAB_Listener
-import com.mozhimen.basick.elemk.commons.IA_Listener
-import com.mozhimen.basick.utilk.bases.BaseUtilK
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.elemk.commons.IAB_Listener
+import com.mozhimen.kotlin.elemk.commons.IA_Listener
+import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.tencent.cos.xml.CosXmlService
 import com.tencent.cos.xml.exception.CosXmlClientException
 import com.tencent.cos.xml.exception.CosXmlServiceException
