@@ -18,6 +18,8 @@ fun CosXmlService.getPresignDownloadUrl(bucket: String, cosPath: String, expirat
 fun CosXmlService.getPresignUploadUrl(bucket: String, cosPath: String): String =
     COSUrlUtil.getPresignUploadUrl(this, bucket, cosPath)
 
+////////////////////////////////////////////////////////////////////////////////
+
 object COSUrlUtil {
     /**
      * 获取预签名下载链接
