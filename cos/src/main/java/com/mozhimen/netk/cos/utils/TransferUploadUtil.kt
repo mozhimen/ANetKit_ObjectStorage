@@ -37,6 +37,11 @@ import kotlin.coroutines.resume
 object TransferUploadUtil : BaseUtilK() {
     private val _transferConfig by lazy { TransferConfig.Builder().build() }// 初始化 TransferConfig，这里使用默认配置，如果需要定制，请参考 SDK 接口文档
 
+    fun getTransferConfig(): TransferConfig =
+        _transferConfig
+
+    ////////////////////////////////////////////////////////////////
+
     @JvmStatic
     suspend fun transferUploadFile_onBack(cosXmlService: CosXmlService, bucket: String, cosPath: String, strFilePathName: String, onProgress: IAB_Listener<Long, Long>? = null): Boolean =
         suspendCancellableCoroutine { continuation ->
